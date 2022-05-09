@@ -1,0 +1,160 @@
+#include "stdio.h"
+int bitRest(int no,int bit);
+int main(){
+	int no,bit;
+printf("Enter a number");
+fflush(stdout); fflush(stdin);
+scanf("%d",&no);
+printf("Bit position");
+fflush(stdout); fflush(stdin);
+scanf("%d",&bit);
+printf("==>\n result = %d",bitRest(no,bit));
+
+}
+int bitRest(int no,int bit){
+	no &= ~(1 << bit);
+	return no;
+
+}
+*************************************************
+#include "stdio.h"
+void swap(int a[],int b[],int l1,int l2);
+void main(){
+	int a[100],b[100];
+	int l1,l2,i;
+	printf("enter length of 1st array");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&l1);
+	printf("enter element of 1st array");
+	fflush(stdout); fflush(stdin);
+	for (i=0; i<l1;i++)
+		scanf("%d",&a[i]);
+	printf("enter length of 2nd array");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&l2);
+	printf("enter element of 2nd array");
+	fflush(stdout); fflush(stdin);
+	for (i=0; i<l2;i++)
+		scanf("%d",&b[i]);
+	swap(a,b,l1,l2);
+	printf("element stored in 1st array are >> \n");
+	for (i=0; i<l1;i++)
+		printf("%d\t",a[i]);
+	printf("\n element stored in 2nd string are >>\n");
+	for (i=0; i<l2;i++)
+		printf("%d\t",b[i]);
+}
+void swap(int a[],int b[],int l1,int l2){
+	char swap;
+	int i,size;
+	size=l1>l2?l2:l1;
+	for (i=0; i<size;i++ ){
+		swap=a[i];
+		a[i]=b[i];
+		b[i]=swap;
+	}
+	if(l1>l2){
+		for(i=l2;i<l1;i++)
+			b[i]=a[i];
+	}
+	else
+	{
+		for(i=l1;i<l2;i++)
+			a[i]=b[i];
+	}
+}
+*************************************************
+#include "stdio.h"
+int last_occurance(int a[],int li,int tar);
+void main (){
+	int limit,i,target,result;
+	int arr[100];
+	printf("Enter the number of element in the list \t ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&limit);
+	printf("Enter the list of index from 0 to 9 ");
+	fflush(stdout); fflush(stdin);
+	for(i=0; i<limit; i++)
+		scanf("%d",&arr[i]);
+	printf("Enter the number you want to search for  ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&target);
+	result = last_occurance(arr,limit,target);
+	printf("Result = %d",result);
+
+}
+int last_occurance(int a[],int li,int tar){
+	int i,found=0,occurance;
+	for (i=0; i<li; i++)
+	{
+		if(a[i]== tar)
+		{
+			found =1;
+			occurance=i+1;
+			continue;
+		}
+	}
+	if (found==1)
+		return occurance;
+	else
+		return -1;
+}
+*************************************************
+#include "stdio.h"
+int bit_checker(int tar);
+void main (){
+	int target;
+	printf("Enter the number you want to find it 4th least significant bit ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&target);
+	printf("the 4th least significant bit in %d is %d",target,bit_checker(target));
+}
+int bit_checker(int tar){
+	return (tar & (1 << (4-1)));
+}
+*************************************************
+#include "stdio.h"
+void reverse(int tar,int arr[]);
+void main (){
+	int i,target,arr[50];
+	printf("Enter the number of element ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&target);
+	printf("Enter the element ");
+	fflush(stdout); fflush(stdin);
+	for(i=0; i<target; i++)
+		scanf("%d",&arr[i]);
+	reverse(target,arr);
+
+}
+void reverse(int tar,int arr[]){
+	int i,swap,temp;
+	temp=tar;
+	for(i=0; i<tar; i++){
+		swap=arr[i];
+		arr[i]=arr[tar];
+		arr[tar]=swap;
+		tar--;
+	}
+	printf("the reverse element \t");
+	for(i=1; i<=temp; i++)
+		printf("%d \t",arr[i]);
+}
+*************************************************
+#include "stdio.h"
+int power_of_3(int tar);
+void main (){
+	int result,target;
+	printf("Enter the number you want to check ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&target);
+	printf("%d ==> %d",target,power_of_3(target));
+}
+int power_of_3(int tar){
+	if (tar%3==0)
+		return power_of_3(tar/3);
+	if (tar ==1)
+		return 0;
+	return 1;
+}
+*************************************************
