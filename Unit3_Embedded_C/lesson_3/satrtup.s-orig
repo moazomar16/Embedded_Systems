@@ -1,0 +1,33 @@
+/* prepared by 
+eng. Moaz Omar
+lab_2 toggling led*/
+
+.section .vectors
+.word 0x20001000            /* stack top*/
+.word _reset                /* 1 reset*/
+.word vector_handler		/* 2 hard fault*/	
+.word vector_handler		/* 3 mm fault*/
+.word vector_handler		/* 4 bus fault*/
+.word vector_handler		/* 5 usage fault*/
+.word vector_handler		/* 6 reserved*/
+.word vector_handler		/* 7 reserved*/
+.word vector_handler		/* 8 reserved*/
+.word vector_handler		/* 9 reserved*/
+.word vector_handler		/* 10 reserved*/
+.word vector_handler		/* 11 sv call*/
+.word vector_handler		/* 12 debug reserved*/
+.word vector_handler		/* 13 reserved*/
+.word vector_handler		/* 14 pend sv*/
+.word vector_handler		/* 15 systick*/
+.word vector_handler		/* 16 IRQ0*/
+.word vector_handler		/* 17 IRQ1*/
+.word vector_handler		/* 18 IRQ2*/
+.word vector_handler		/* 19 ...*/
+
+.section .text
+_reset:
+	bl main
+	b .
+.thumb_func
+vector_handler:
+	b _reset
