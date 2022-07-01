@@ -1,0 +1,31 @@
+/*
+prepared by 
+eng.Moaz Oamr*/
+
+MEMORY
+{
+	flash(RX) : ORIGIN = 0x00000000, LENGTH = 512M
+	sram(RWX) : ORIGIN = 0x20000000, LENGTH = 512M
+}
+SECTIONS
+{	
+	.text : {
+		*(.vectors*)
+		*(.text*)
+		*(.rodata)
+		E_text = . ;
+	}>flash
+
+	.data : {
+		S_data = . ;
+		*(.data*)
+		. = ALIGN(4);
+		E_data = . ;
+	}> sram AT> flash
+
+	.bss : {
+		S_bss = . ;
+		*(.bss*)
+		E_bss = . ;
+	}>sram
+}
